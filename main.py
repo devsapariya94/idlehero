@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from flask import Flask, render_template, request,jsonify
+from flask import Flask, render_template, request,jsonify, redirect, url_for
 import time
 import urllib.parse
 app = Flask(__name__)
@@ -15,9 +15,12 @@ def target():
 
 @app.route("/processing")
 def processing():
-	time.sleep(0)
-	return render_template('success.html')
+	time.sleep(30)
+	return redirect(url_for('success'))
 
+@app.route("/success")
+def success():
+	return render_template('success.html')
 
 # @app.route("/run", methods=['POST'])
 # def run():
@@ -31,8 +34,5 @@ def processing():
 #             return jsonify({'output': str(e)})
 
 
-@app.route('/test')
-def test():
-	return render_template('test.html')
 if __name__ == '__main__':
 	app.run(host = '0.0.0.0', debug=True)

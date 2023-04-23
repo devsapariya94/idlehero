@@ -36,7 +36,7 @@
         </li>
       </ul>
       <div class="ml-auto">
-          <button class="btn btn-primary" >Run Code</button>
+          <button class="btn btn-primary" onclick="runCode()" >Run Code</button>
       </div>
     </div>
   </nav>
@@ -71,23 +71,7 @@
       const code = document.getElementById('code-editor').value;
       const output = document.getElementById('output');
       output.value = 'Running code...';
-      console.log(code);
-      fetch('/run', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({code})
-      })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        output.value = data.output;
-      })
-      .catch(err => {
-        console.log(err);
-        output.value = 'Error running code';
-      })
+     
 
     }
   </script>
